@@ -68,18 +68,64 @@ class TestLanguageModels(unittest.TestCase):
 
 
 class TestQ1Adapter(unittest.TestCase):
-    """Test Question 1 segmentation adapter and fallback decoder."""
+    """Test Question 1 genuine English segmentation and POS tagging integration."""
+
+    def test_genuine_q1_models_loaded(self):
+        status = default_q1_adapter.get_status()
+        self.assertFalse(status["is_fallback"])
+        self.assertEqual(status["status_label"], "REAL (Q1 Imported)")
+        self.assertGreater(status["vocab_size"], 30000)
+        self.assertIsNotNone(default_q1_adapter.segmenter)
+        self.assertIsNotNone(default_q1_adapter.tagger)
 
     def test_known_word_lookup(self):
         self.assertTrue(default_q1_adapter.is_known_word("the"))
         self.assertTrue(default_q1_adapter.is_known_word("government"))
+        self.assertTrue(default_q1_adapter.is_known_word("investigation"))
         self.assertFalse(default_q1_adapter.is_known_word("thequickbrownfox"))
 
-    def test_merged_word_segmentation(self):
+    def test_merged_word_segmentation_with_real_q1(self):
         split_words, tags, split_score, single_score = default_q1_adapter.segment_token("thequick")
         self.assertEqual(split_words, ["the", "quick"])
-        self.assertGreaterEqual(split_score, single_score)
+        self.assertGreater(split_score, single_score)
         self.assertEqual(len(tags), 2)
+        # Real Q1 Brown tag for 'the' is 'AT'
+        self.assertEqual(tags[0].upper(), "AT")
+
+    def test_pos_tagging_with_real_q1(self):
+        tag = default_q1_adapter.get_pos_tag("the")
+        self.assertEqual(tag.upper(), "AT")
+
+        tagged_sent = default_q1_adapter.tag_sentence(["the", "cat"])
+        self.assertEqual(len(tagged_sent), 2)
+        self.assertEqual(tagged_sent[0][1].upper(), "AT")
+
+    def test_segment_and_tag(self):
+        pairs = default_q1_adapter.segment_and_tag("thequick")
+        self.assertEqual(len(pairs), 2)
+        self.assertEqual(pairs[0][0], "the")
+        self.assertEqual(pairs[1][0], "quick")
+        self.assertEqual(pairs[0][1].upper(), "AT")
+
+    def test_explicit_failure_on_missing_resources(self):
+        from adapters.q1_adapter import Q1IntegrationAdapter
+        import tempfile
+        # Create a corrupted/empty pickle file
+        with tempfile.NamedTemporaryFile(suffix=".pkl", delete=False) as tmp:
+            tmp.write(b"corrupted_pickle_content")
+            tmp_path = tmp.name
+
+        try:
+            # When corrupted file cannot be unpickled and we mock failure
+            with self.assertRaises(RuntimeError):
+                # Force failure by passing invalid path with mocked loader exception
+                from unittest.mock import patch
+                with patch("adapters.q1_adapter.load_english_q1_models", side_effect=Exception("Corrupted model file")):
+                    Q1IntegrationAdapter(model_path=tmp_path)
+        finally:
+            import os
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
 
 
 class TestQ3Adapter(unittest.TestCase):

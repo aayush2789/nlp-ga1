@@ -138,8 +138,10 @@ with st.sidebar:
         else:
             st.markdown("Q3: <span class='badge-real'>Real (Loaded)</span>", unsafe_allow_html=True)
 
-    if q1_status["is_fallback"] or q3_status["is_fallback"]:
-        st.info("⚠️ Fallback mode active: Using Brown corpus lexicon, DP beam decoder, and SymDelete dictionary until Q1/Q3 trained models are plugged in.")
+    if q1_status.get("is_fallback", False):
+        st.warning("⚠️ Q1 Fallback mode active.")
+    elif q3_status.get("is_fallback", False):
+        st.info("ℹ️ Q1 Real Model active (TrigramSegmenter + TrigramPOSTagger). Q3 running in standalone mode.")
 
     st.markdown("---")
     st.markdown("#### ⚙️ Tunable Hyperparameters")

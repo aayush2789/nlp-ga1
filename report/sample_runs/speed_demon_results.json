@@ -1,13 +1,13 @@
 {
   "batch_size": 1000,
-  "per_token_total_sec": 0.07353629998397082,
-  "per_token_avg_ms": 0.07353629998397082,
-  "per_token_throughput_wps": 13598.726074305838,
-  "grammar_total_sec": 0.006997799966484308,
-  "grammar_avg_ms": 0.006997799966484308,
-  "grammar_throughput_wps": 142902.05561597378,
-  "method_a_avg_ms": 0.16137919994071126,
-  "method_b_avg_ms": 0.009454599930904806,
-  "method_b_speedup": 17.06885549045831,
-  "conclusion": "SPEED DEMON BENCHMARK ANALYSIS:\n1. Per-Token Pipeline vs. Grammar Trigger: The per-token live-check pipeline (segmentation beam-search + spelling correction) averaged 0.074 ms/word, while the grammar trigger check averaged 0.007 ms/word (amortized per word). The segmentation + spelling layer adds ~0.067 ms of latency per word. This occurs because every out-of-vocabulary token invokes dynamic programming beam search over substrings followed by candidate set generation and frequency lookups. In contrast, the grammar check only triggers once every N=5 words on an established token window.\n2. Method A vs. Method B Candidate Generation: Method B (Symmetric Delete) achieved an average latency of 0.009 ms/word compared to 0.161 ms/word for Method A, yielding a 17.1x speedup. Method A generates O(54L + 25) edit strings per word via deletions, transpositions, substitutions, and insertions, requiring extensive Python string creation. Method B precomputes a 1-character deletion dictionary over the vocabulary at startup, so at runtime it only generates L one-character deletions of the query string and performs O(1) hash map lookups. This dramatic reduction in string allocations makes Method B exceptionally well-suited for live editors.\n3. Real-Time Feasibility: Because typical human typing speed is 40-80 WPM (~150-300 ms per keystroke/word), the per-token latency of 0.074 ms is orders of magnitude lower than the typing delay, confirming the editor operates seamlessly without perceptible lag."
+  "per_token_total_sec": 0.8167752000153996,
+  "per_token_avg_ms": 0.8167752000153996,
+  "per_token_throughput_wps": 1224.3270853242677,
+  "grammar_total_sec": 0.006515800021588802,
+  "grammar_avg_ms": 0.006515800021588802,
+  "grammar_throughput_wps": 153473.09565773958,
+  "method_a_avg_ms": 0.12618099991232157,
+  "method_b_avg_ms": 0.006414199946448207,
+  "method_b_speedup": 19.67213385391781,
+  "conclusion": "SPEED DEMON BENCHMARK ANALYSIS:\n1. Per-Token Pipeline vs. Grammar Trigger: The per-token live-check pipeline (segmentation beam-search + spelling correction) averaged 0.817 ms/word, while the grammar trigger check averaged 0.007 ms/word (amortized per word). The segmentation + spelling layer adds ~0.810 ms of latency per word. This occurs because every out-of-vocabulary token invokes dynamic programming beam search over substrings followed by candidate set generation and frequency lookups. In contrast, the grammar check only triggers once every N=5 words on an established token window.\n2. Method A vs. Method B Candidate Generation: Method B (Symmetric Delete) achieved an average latency of 0.006 ms/word compared to 0.126 ms/word for Method A, yielding a 19.7x speedup. Method A generates O(54L + 25) edit strings per word via deletions, transpositions, substitutions, and insertions, requiring extensive Python string creation. Method B precomputes a 1-character deletion dictionary over the vocabulary at startup, so at runtime it only generates L one-character deletions of the query string and performs O(1) hash map lookups. This dramatic reduction in string allocations makes Method B exceptionally well-suited for live editors.\n3. Real-Time Feasibility: Because typical human typing speed is 40-80 WPM (~150-300 ms per keystroke/word), the per-token latency of 0.817 ms is orders of magnitude lower than the typing delay, confirming the editor operates seamlessly without perceptible lag."
 }

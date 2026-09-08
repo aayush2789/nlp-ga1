@@ -4,10 +4,10 @@
   "passage_text": "Qu. I will my Lord ; I pray you pardon me King. It is the poyson ' d Cup, it is too late Ham. I dare not drinke yet Madam, By and by",
   "sentence_count": 3,
   "injected_merges": [],
-  "total_tokens_processed": 35,
-  "merges_resolved": 2,
-  "spelling_corrections": 1,
-  "real_word_alerts": 2,
+  "total_tokens_processed": 37,
+  "merges_resolved": 3,
+  "spelling_corrections": 0,
+  "real_word_alerts": 4,
   "grammar_anomalies": 7,
   "alerts": [
     {
@@ -15,8 +15,8 @@
       "token_idx": 0,
       "original": "Qu.",
       "replacement": "q u",
-      "details": "Resolved merged token into: 'q' (NN) + 'u' (NP) [Split Score: -22.65 > Single: -25.00]",
-      "latency_ms": 0.041899969801306725
+      "details": "Resolved merged token via Q1 TrigramSegmenter: 'q' (NP) + 'u' (NP)",
+      "latency_ms": 2.7256000321358442
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
@@ -24,7 +24,7 @@
       "original": "my",
       "replacement": "by",
       "details": "Real-word contextual error detected: 'my' -> 'by'. Contextual likelihood ratio: 27.8x higher (P_cand=4.90e-09 vs P_orig=1.76e-10)",
-      "latency_ms": 0.13939995551481843
+      "latency_ms": 0.14080002438277006
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
@@ -32,7 +32,7 @@
       "original": "q u I will by",
       "replacement": "[Review syntax/collocation]",
       "details": "Local window perplexity (54621.6) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.18269999418407679
+      "latency_ms": 0.18420000560581684
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
@@ -40,7 +40,7 @@
       "original": "by",
       "replacement": "be",
       "details": "Real-word contextual error detected: 'by' -> 'be'. Contextual likelihood ratio: 8.1x higher (P_cand=8.30e-07 vs P_orig=1.03e-07)",
-      "latency_ms": 0.07879995973780751
+      "latency_ms": 0.08550001075491309
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
@@ -48,7 +48,7 @@
       "original": "I will be Lord ; I pray you",
       "replacement": "[Review syntax/collocation]",
       "details": "Local window perplexity (6358.9) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.11859997175633907
+      "latency_ms": 0.12670003343373537
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
@@ -56,64 +56,80 @@
       "original": "I pray you pardon me King. It is",
       "replacement": "[Review syntax/collocation]",
       "details": "Local window perplexity (18500.5) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.3347000456415117
+      "latency_ms": 0.3276999923400581
     },
     {
-      "alert_type": "[SPELL-ALERT]",
+      "alert_type": "[SEGMENT-ALERT]",
       "token_idx": 15,
       "original": "poyson",
-      "replacement": "poison",
-      "details": "Non-word correction: 'poyson' -> 'poison' using Method B (SymDelete) (candidate latency: 0.01ms)",
-      "latency_ms": 0.011499971151351929
+      "replacement": "po ys on",
+      "details": "Resolved merged token via Q1 TrigramSegmenter: 'po' (NP-TL) + 'ys' (BEZ) + 'on' (IN)",
+      "latency_ms": 1.9653000053949654
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 16,
+      "original": "po",
+      "replacement": "lo",
+      "details": "Real-word contextual error detected: 'po' -> 'lo'. Contextual likelihood ratio: 19.8x higher (P_cand=7.19e-09 vs P_orig=3.62e-10)",
+      "latency_ms": 0.22029998945072293
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
       "token_idx": 19,
-      "original": "King. It is the poison ' d Cup,",
+      "original": "King. It is the lo ys on '",
       "replacement": "[Review syntax/collocation]",
-      "details": "Local window perplexity (23089.1) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.19799999427050352
+      "details": "Local window perplexity (23115.7) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.2568999771028757
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 17,
+      "original": "ys",
+      "replacement": "so",
+      "details": "Real-word contextual error detected: 'ys' -> 'so'. Contextual likelihood ratio: 191.9x higher (P_cand=1.18e-07 vs P_orig=6.17e-10)",
+      "latency_ms": 0.0461999443359673
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
       "token_idx": 24,
-      "original": "' d Cup, it is too late Ham.",
+      "original": "so on ' d Cup, it is too",
       "replacement": "[Review syntax/collocation]",
-      "details": "Local window perplexity (10060.0) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.2212999970652163
+      "details": "Local window perplexity (12498.3) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.08029997115954757
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 29,
+      "original": "it is too late Ham. I dare not",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (2570.1) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.3470999654382467
     },
     {
       "alert_type": "[SEGMENT-ALERT]",
       "token_idx": 27,
       "original": "drinke",
       "replacement": "drink e",
-      "details": "Resolved merged token into: 'drink' (NN) + 'e' (NN) [Split Score: -20.93 > Single: -25.00]",
-      "latency_ms": 0.045599997974932194
-    },
-    {
-      "alert_type": "[GRAMMAR-ALERT]",
-      "token_idx": 29,
-      "original": "too late Ham. I dare not drink e",
-      "replacement": "[Review syntax/collocation]",
-      "details": "Local window perplexity (25049.8) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.2391999587416649
+      "details": "Resolved merged token via Q1 TrigramSegmenter: 'drink' (NN) + 'e' (NN)",
+      "latency_ms": 1.8274000030942261
     },
     {
       "alert_type": "[GRAMMAR-ALERT]",
       "token_idx": 34,
-      "original": "not drink e yet Madam, By and by",
+      "original": "I dare not drink e yet Madam, By",
       "replacement": "[Review syntax/collocation]",
-      "details": "Local window perplexity (21262.0) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
-      "latency_ms": 0.26329996762797236
+      "details": "Local window perplexity (17679.4) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.2190999803133309
     }
   ],
   "latency_stats": {
-    "avg_per_token_ms": 0.008342422502623363,
-    "max_per_token_ms": 0.0751999905332923,
-    "avg_per_trigger_ms": 0.22414285090884992,
-    "max_per_trigger_ms": 0.3361999988555908,
-    "total_tokens_processed": 35,
-    "total_alerts": 12
+    "avg_per_token_ms": 0.32644848529757425,
+    "max_per_token_ms": 2.740900032222271,
+    "avg_per_trigger_ms": 0.2218999933185322,
+    "max_per_trigger_ms": 0.3488999791443348,
+    "total_tokens_processed": 37,
+    "total_alerts": 14
   },
   "sentence_records": [
     {
@@ -134,19 +150,19 @@
     },
     {
       "sentence_idx": 2,
-      "sentence_text": "It is the poison ' d Cup, it is too late Ham.",
-      "pcfg_result": "-137.49",
-      "pcfg_log_prob": -137.48830436218205,
-      "bigram_score": -136.71225294301874,
-      "bigram_ppl": 1464.6367133969218,
-      "trigram_score": -153.0727942059503,
-      "trigram_ppl": 3504.105080485928,
+      "sentence_text": "It is the lo so on ' d Cup, it is too late Ham.",
+      "pcfg_result": "-181.02",
+      "pcfg_log_prob": -181.02064400375764,
+      "bigram_score": -157.43898919816823,
+      "bigram_ppl": 1444.077658591275,
+      "trigram_score": -183.24421646453393,
+      "trigram_ppl": 4758.466825002675,
       "chosen_method": "Bigram/Trigram LM",
-      "decision_reason": "PCFG unparseable and severe perplexity spikes in both Bigram (1464.6) and Trigram (3504.1) models.",
+      "decision_reason": "PCFG unparseable and severe perplexity spikes in both Bigram (1444.1) and Trigram (4758.5) models.",
       "final_verdict": "Ungrammatical",
-      "merges_resolved": 0,
-      "spelling_corrections": 1,
-      "tree_str": "(S|<NP-SBJ-20-VP>\n  (NP-SBJ-20 (PRP It))\n  (VP\n    (VBZ is)\n    (VP|<NP-S-MNR>\n      (NP\n        (NP (DT the) (NP|<NN-POS> (NN poison) (POS ')))\n        (NP|<NN-NN> (NN d) (NN Cup,)))\n      (S-MNR\n        (NP-SBJ (PRP it))\n        (VP (VBZ is) (VP|<RB-NP> (RB too) (NP (JJ late) (NN Ham.))))))))"
+      "merges_resolved": 1,
+      "spelling_corrections": 0,
+      "tree_str": "(S|<NP-SBJ-20-VP>\n  (NP-SBJ-20 (PRP It))\n  (VP\n    (VBZ is)\n    (S\n      (NP-SBJ-72 (DT the) (NNP po))\n      (VP\n        (VBZ ys)\n        (S\n          (PP-LOC\n            (IN on)\n            (NP (NP (NN ')) (NP|<NNP-NN> (NNP d) (NN Cup,))))\n          (S|<NP-SBJ-VP>\n            (NP-SBJ (PRP it))\n            (VP\n              (VBZ is)\n              (VP|<RB-NP> (RB too) (NP (JJ late) (NN Ham.))))))))))"
     },
     {
       "sentence_idx": 3,
@@ -184,16 +200,16 @@
     {
       "sentence_idx": 2,
       "raw_sentence": "I will my Lord ; I pray you pardon me",
-      "corrected_sentence": "It is the poison ' d Cup, it is too late Ham.",
-      "pcfg_before": "unparseable",
-      "pcfg_after": "-137.49",
-      "pcfg_flipped": true,
-      "decision_before": "Trigram LM",
+      "corrected_sentence": "It is the lo so on ' d Cup, it is too late Ham.",
+      "pcfg_before": "-118.27",
+      "pcfg_after": "-181.02",
+      "pcfg_flipped": false,
+      "decision_before": "PCFG Parser",
       "decision_after": "Bigram/Trigram LM",
       "decision_changed": true,
       "corrections_applied": [
-        "Merges resolved: 0",
-        "Spelling fixes: 1"
+        "Merges resolved: 1",
+        "Spelling fixes: 0"
       ]
     },
     {

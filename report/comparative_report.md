@@ -48,11 +48,14 @@ Standard CKY algorithms have cubic complexity $O(n^3 \cdot |G|)$. On long compou
   - `segment_token(token: str) -> Tuple[List[str], List[str], float, float]`
   - `segment_and_tag(token: str) -> List[Tuple[str, str]]`
   - `tag_sentence(words: List[str]) -> List[Tuple[str, str]]`
-- **Dynamic Hooking:** Checks for module `q1_english` or serialized model file `models/q1_english_model.pkl`.
-- **Fallback Implementation:** Utilizes Brown corpus vocabulary, most frequent Brown tag heuristics, and a dynamic programming beam-search decoder scoring:
-  $$\text{Score} = \alpha \sum \log P_{LM}(w_i) + \beta \sum \log P_{POS}(t_i | w_i)$$
-  with $\alpha = 0.7, \beta = 0.3$, beam width 10, and max word length 18.
-- **Alert Trigger:** Emits `[SEGMENT-ALERT]` whenever a split into $\ge 2$ words yields a higher combined score than the single-word representation.
+  - `get_status() -> Dict[str, Any]`
+- **Direct Integration Architecture:**
+  - Directly binds to the authentic Question 1 implementation via `q1.q1_model`, loading the genuine `TrigramSegmenter` and `TrigramPOSTagger` trained from Question 1.
+  - Caches pre-trained model instances in `models/q1_english_model.pkl` for rapid startup without redundant re-training.
+- **Strict No-Fallback Policy:**
+  - All temporary fallback heuristics (frequency thresholding, suffix heuristics, fallback beam search) have been completely removed from `adapters/q1_adapter.py`.
+  - If Question 1 model dependencies cannot be initialized, the adapter immediately raises an explicit, descriptive `RuntimeError`, guaranteeing architectural fidelity.
+- **Alert Trigger:** Emits `[SEGMENT-ALERT]` whenever the Q1 `TrigramSegmenter` resolves a compound/merged token into $\ge 2$ constituents with their corresponding Q1 POS tags.
 
 ### 2.2 Question 3 Integration Adapter (`adapters/q3_adapter.py`)
 - **Stable Interface:**
@@ -113,22 +116,22 @@ We executed the benchmark on a batch of exactly 1,000 corrupted/misspelled words
 | Benchmark Evaluation Metric | Measured Value |
 | :--- | :--- |
 | **Batch Size** | 1,000 words |
-| **Full Per-Token Pipeline Execution Time** | **0.074 s** |
-| **Per-Token Average Latency (Seg + Spell)** | **0.074 ms/word** |
-| **Per-Token Processing Throughput** | **13,598 words/sec** |
+| **Full Per-Token Pipeline Execution Time** | **0.817 s** |
+| **Per-Token Average Latency (Seg + Spell)** | **0.817 ms/word** |
+| **Per-Token Processing Throughput** | **1,224.3 words/sec** |
 | **Isolated Grammar Trigger Total Time** | **0.007 s** |
 | **Isolated Grammar Amortized Latency** | **0.007 ms/word** |
-| **Method A (Standard Edit-1) Avg Latency** | **0.161 ms/word** |
-| **Method B (Symmetric Delete) Avg Latency** | **0.009 ms/word** |
-| **Method B vs. Method A Speedup Ratio** | **17.1× Speedup** |
+| **Method A (Standard Edit-1) Avg Latency** | **0.126 ms/word** |
+| **Method B (Symmetric Delete) Avg Latency** | **0.006 ms/word** |
+| **Method B vs. Method A Speedup Ratio** | **19.7× Speedup** |
 
 ### Benchmark Analysis & Latency Isolation:
 1. **Added Latency of Segmentation + Spelling:**  
-   The per-token pipeline adds approximately $0.067\text{ ms}$ per word over the isolated grammar trigger. This difference arises because every out-of-vocabulary word triggers a substring dynamic programming search across multiple candidate split lengths followed by candidate set generation. In contrast, the grammar check only computes n-gram probabilities over a fixed sliding window.
+   The per-token pipeline adds approximately $0.810\text{ ms}$ per word over the isolated grammar trigger. This difference arises because every out-of-vocabulary word triggers dynamic programming beam search over candidate substrings within the Question 1 `TrigramSegmenter` followed by candidate set generation and vocabulary frequency lookups. In contrast, the grammar check only computes n-gram probabilities over a fixed sliding window.
 2. **Why Method B Outperforms Method A:**  
-   Method A creates all possible deletion, insertion, replacement, and transposition edit strings in memory ($54L + 25$ string allocations per word). Method B precomputes a hash map of 1-character deletions at startup; at runtime, finding candidates requires generating only $L$ deletions of the query string and performing $O(1)$ dictionary lookups, completely eliminating combinatorial string allocations.
+   Method A creates all possible deletion, insertion, replacement, and transposition edit strings in memory ($54L + 25$ string allocations per word). Method B precomputes a hash map of 1-character deletions at startup; at runtime, finding candidates requires generating only $L$ deletions of the query string and performing $O(1)$ dictionary lookups, completely eliminating combinatorial string allocations and achieving a **19.7× speedup**.
 3. **Live Typing Feasibility:**  
-   Human typing speed averages 40–80 words per minute (approx. 150–300 ms per keystroke). A per-token latency of $0.074\text{ ms}$ is over **2,000 times faster** than human typing speed. Therefore, running live segmentation and spelling checks per token introduces zero perceptible lag.
+   Human typing speed averages 40–80 words per minute (approx. 150–300 ms per keystroke/word). A per-token latency of $0.817\text{ ms}$ is approximately **300 times faster** than average human keystroke intervals. Therefore, running genuine Question 1 segmentation and spelling checks per token introduces zero perceptible lag in interactive use.
 
 ---
 
@@ -195,12 +198,12 @@ The table below documents specific observed interaction events where a Question 
 ## 8. Conclusion & Submission Deliverables Verification
 
 All required deliverables for Question 4 have been implemented and verified:
-1. **Integration Layer:** Reusable adapters for Q1 and Q3 with isolated fallbacks and automatic model detection.
+1. **Integration Layer:** Direct integration with authentic Question 1 English `TrigramSegmenter` and `TrigramPOSTagger` (all fallbacks removed), and reusable adapter for Question 3.
 2. **Live Typing Simulator:** Fast-typing merge generator ($p=0.08$) and word-by-word streaming.
 3. **Alert Pipeline:** Live `[SEGMENT-ALERT]`, `[SPELL-ALERT]`, and periodic `[GRAMMAR-ALERT]` ($N=5$) with real-word error checking.
 4. **PCFG Constituency Parser:** CNF grammar induced from Penn Treebank sample, parsed via an optimized probabilistic CKY algorithm with graceful `unparseable` failure handling.
 5. **Tagset Reconciliation:** High-coverage (91.4% direct) mapping bridging Brown POS tags to Penn Treebank tags.
 6. **Shared Language Models:** Add-$k$ ($k=0.05$) smoothed Bigram and Trigram models on the Brown corpus.
 7. **End-of-Passage Decision Rule:** Multi-tier explainable selection rule producing sentence-level summary tables.
-8. **Speed Demon Benchmark:** 1,000-word benchmark demonstrating $0.074\text{ ms/word}$ per-token latency and 17.1× speedup of Method B over Method A.
+8. **Speed Demon Benchmark:** 1,000-word benchmark demonstrating $0.817\text{ ms/word}$ per-token latency (1,224.3 words/sec) and 19.7× speedup of Method B over Method A.
 9. **Interactive Web Application:** Fully functional 6-tab Streamlit dashboard (`app.py`).

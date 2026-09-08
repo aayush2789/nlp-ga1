@@ -6,12 +6,12 @@ This repository contains the complete implementation of **Question 4** for the N
 ---
 
 ### Key Features
-1. **Word Segmentation & POS Tagging**: Integrates Question 1's beam-search decoder and feature-based POS classifier with a modular adapter (`adapters/q1_adapter.py`) and development fallback mode.
+1. **Word Segmentation & POS Tagging**: Integrates the genuine Question 1 `TrigramSegmenter` and `TrigramPOSTagger` trained models directly via `adapters/q1_adapter.py` and `q1/q1_model.py` (all development fallbacks removed; raises `RuntimeError` on failure).
 2. **Spelling Correction**: Reuses Question 3's candidate generation (Method A: Edit-1, Method B: Symmetric Delete), unigram frequency non-word correction, and bigram contextual real-word error detection via `adapters/q3_adapter.py`.
 3. **PCFG Constituency Parsing & Tagset Reconciliation**: Induces a Chomsky Normal Form PCFG from Penn Treebank, parsed via a probabilistic CKY/Viterbi parser with cell beam pruning ($K=25$) and Brown $\to$ Penn Treebank POS tagset reconciliation.
 4. **Shared Smoothed N-Gram Language Models**: Add-$k$ ($k=0.05$) smoothed Bigram and Trigram models trained on the Brown corpus.
 5. **Live Simulation & Interactive User Mode**: Fast-typing merge injection ($p=0.08$) and periodic grammar checks ($N=5$).
-6. **Speed Demon Benchmark**: 1,000-word benchmark suite measuring latency and throughput, demonstrating a **17.1× speedup** of Method B over Method A and $0.074\text{ ms/word}$ per-token latency.
+6. **Speed Demon Benchmark**: 1,000-word benchmark suite measuring latency and throughput, demonstrating a **19.7× speedup** of Method B over Method A and $0.817\text{ ms/word}$ per-token latency (1,224.3 words/sec).
 7. **Streamlit Web Application**: Interactive dashboard deployed via `app.py`.
 
 ---
@@ -20,16 +20,21 @@ This repository contains the complete implementation of **Question 4** for the N
 ```
 nlp-ga1/
 ├── config.py                       # Central hyperparameter configuration (p, N, k, thresholds)
+├── q1.py                           # Question 1 script (clean execution refactor)
+├── q1/
+│   ├── __init__.py                 # Q1 module exports
+│   └── q1_model.py                 # Core Q1 TrigramSegmenter, TrigramPOSTagger & cache loader
 ├── data/
 │   ├── corpora_loader.py           # Corpus loaders (Brown, Treebank, Gutenberg, Reuters)
 │   └── tag_mappings.py             # Brown -> Penn Treebank POS tag reconciliation dictionary
 ├── adapters/
-│   ├── q1_adapter.py               # Question 1 segmentation & POS decoder adapter (+ fallback)
+│   ├── q1_adapter.py               # Question 1 segmentation & POS decoder adapter (Genuine Q1 model)
 │   └── q3_adapter.py               # Question 3 spelling correction adapter (+ fallback)
 ├── models/
 │   ├── language_models.py          # Add-k smoothed Bigram & Trigram LMs (Brown corpus)
 │   ├── pcfg_parser.py              # PCFG induction + optimized probabilistic CKY parser
-│   └── tagset_reconciler.py        # Tag reconciliation layer between Q1 and PCFG
+│   ├── tagset_reconciler.py        # Tag reconciliation layer between Q1 and PCFG
+│   └── q1_english_model.pkl        # Serialized pre-trained Q1 models
 ├── pipeline/
 │   ├── typing_simulation.py        # Fast-typing merge generator (prob p), streamer
 │   ├── live_processor.py           # Live token processor ([SEGMENT], [SPELL], [GRAMMAR] alerts)
@@ -40,7 +45,7 @@ nlp-ga1/
 ├── app.py                          # Streamlit interactive web application
 ├── run_benchmark.py                # Standalone CLI runner for Speed Demon and sample runs
 ├── tests/
-│   └── test_pipeline.py            # Automated unit tests
+│   └── test_pipeline.py            # Automated unit tests (18 tests covering Q1, Q3, PCFG, LMs)
 └── report/
     ├── comparative_report.md       # Comprehensive technical & comparative analysis report
     └── sample_runs/                # Serialized JSON artifacts for Run 1, Run 2, and Speed Demon

@@ -103,10 +103,7 @@ class LiveEditorProcessor:
                     token_idx=global_idx,
                     original=clean_tok,
                     replacement=" ".join(split_words),
-                    details=(
-                        f"Resolved merged token into: {tagged_repr} "
-                        f"[Split Score: {split_score:.2f} > Single: {single_score:.2f}]"
-                    ),
+                    details=f"Resolved merged token via Q1 TrigramSegmenter: {tagged_repr}",
                     latency_ms=(time.perf_counter() - token_start_time) * 1000.0,
                 )
                 new_alerts.append(seg_alert)
