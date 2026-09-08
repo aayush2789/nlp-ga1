@@ -1,0 +1,574 @@
+{
+  "run_id": "run_2_brown",
+  "corpus_source": "brown",
+  "passage_text": "The doctor sat down rather wearily, caressing the hen and remarking that the city was not the place for a poultry-loving man, but no sooner was the remark out than a knock at this door obliged him to cover the hen with his greatcoat once more. At the door Alex managed to persuade the increasingly astonished fille de chambre to return in ten minutes. It was evident that a second transfer had to be effected, and that it had to take place between the time the fille finished the doctor's room and the time she began Alex's. They waited three minutes and then crept out on tip-toe ; ; the halls were empty and they passed down the stairs to number nine and listened at the door.",
+  "sentence_count": 4,
+  "injected_merges": [
+    {
+      "token_idx": 26,
+      "merged_token": "theremark",
+      "original_words": [
+        "the",
+        "remark"
+      ],
+      "sentence_idx": 0
+    },
+    {
+      "token_idx": 27,
+      "merged_token": "outthan",
+      "original_words": [
+        "out",
+        "than"
+      ],
+      "sentence_idx": 0
+    },
+    {
+      "token_idx": 53,
+      "merged_token": "astonishedfille",
+      "original_words": [
+        "astonished",
+        "fille"
+      ],
+      "sentence_idx": 1
+    },
+    {
+      "token_idx": 74,
+      "merged_token": "ithad",
+      "original_words": [
+        "it",
+        "had"
+      ],
+      "sentence_idx": 2
+    },
+    {
+      "token_idx": 80,
+      "merged_token": "timethe",
+      "original_words": [
+        "time",
+        "the"
+      ],
+      "sentence_idx": 2
+    },
+    {
+      "token_idx": 86,
+      "merged_token": "andthe",
+      "original_words": [
+        "and",
+        "the"
+      ],
+      "sentence_idx": 2
+    },
+    {
+      "token_idx": 91,
+      "merged_token": "Theywaited",
+      "original_words": [
+        "They",
+        "waited"
+      ],
+      "sentence_idx": 3
+    },
+    {
+      "token_idx": 97,
+      "merged_token": "outon",
+      "original_words": [
+        "out",
+        "on"
+      ],
+      "sentence_idx": 3
+    },
+    {
+      "token_idx": 108,
+      "merged_token": "downthe",
+      "original_words": [
+        "down",
+        "the"
+      ],
+      "sentence_idx": 4
+    }
+  ],
+  "total_tokens_processed": 126,
+  "merges_resolved": 8,
+  "spelling_corrections": 0,
+  "real_word_alerts": 9,
+  "grammar_anomalies": 25,
+  "alerts": [
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 4,
+      "original": "The doctor sat down rather",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (10259.2) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.3046000492759049
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 8,
+      "original": "hen",
+      "replacement": "men",
+      "details": "Real-word contextual error detected: 'hen' -> 'men'. Contextual likelihood ratio: 126.1x higher (P_cand=3.51e-05 vs P_orig=2.78e-07)",
+      "latency_ms": 0.24140003370121121
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 9,
+      "original": "sat down rather wearily, caressing the men and",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (22178.5) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.28060004115104675
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 14,
+      "original": "the men and remarking that the city was",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (2737.8) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.4188999882899225
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 19,
+      "original": "the city was not the place for a",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (1492.7) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.31289999606087804
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 24,
+      "original": "place for a poultry-loving man, but no sooner",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (14264.5) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.21299999207258224
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 26,
+      "original": "theremark",
+      "replacement": "the remark",
+      "details": "Resolved merged token into: 'the' (AT) + 'remark' (NN) [Split Score: -14.37 > Single: -25.00]",
+      "latency_ms": 0.09520002640783787
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 27,
+      "original": "outthan",
+      "replacement": "out than",
+      "details": "Resolved merged token into: 'out' (RP) + 'than' (CS) [Split Score: -13.82 > Single: -25.00]",
+      "latency_ms": 0.04680000711232424
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 29,
+      "original": "than",
+      "replacement": "that",
+      "details": "Real-word contextual error detected: 'than' -> 'that'. Contextual likelihood ratio: 11.2x higher (P_cand=3.77e-08 vs P_orig=3.36e-09)",
+      "latency_ms": 0.2779999631457031
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 29,
+      "original": "but no sooner was the remark out that",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (9695.3) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.31370000215247273
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 34,
+      "original": "remark out that a knock at this door",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (47355.8) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.2738999901339412
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 39,
+      "original": "at this door obliged him to cover the",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (4548.8) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.3486999776214361
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 40,
+      "original": "hen",
+      "replacement": "men",
+      "details": "Real-word contextual error detected: 'hen' -> 'men'. Contextual likelihood ratio: 42.9x higher (P_cand=6.04e-06 vs P_orig=1.41e-07)",
+      "latency_ms": 0.22709998302161694
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 44,
+      "original": "to cover the men with his greatcoat once",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (8409.9) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.2856999635696411
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 49,
+      "original": "his greatcoat once more. At the door Alex",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (11807.6) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.45140000293031335
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 54,
+      "original": "the door Alex managed to persuade the increasingly",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (7267.4) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.424100027885288
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 59,
+      "original": "persuade the increasingly astonishedfille de chambre to return",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (46862.6) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.38380001205950975
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 61,
+      "original": "ten",
+      "replacement": "the",
+      "details": "Real-word contextual error detected: 'ten' -> 'the'. Contextual likelihood ratio: 18.3x higher (P_cand=1.81e-07 vs P_orig=9.89e-09)",
+      "latency_ms": 0.2830000012181699
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 64,
+      "original": "chambre to return in the minutes. It was",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (38201.4) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.3369000041857362
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 69,
+      "original": "minutes. It was evident that a second transfer",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (34470.3) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.341000035405159
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 74,
+      "original": "and",
+      "replacement": "ind",
+      "details": "Real-word contextual error detected: 'and' -> 'ind'. Contextual likelihood ratio: 15.3x higher (P_cand=6.17e-10 vs P_orig=4.03e-11)",
+      "latency_ms": 0.4115999909117818
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 74,
+      "original": "a second transfer had to be effected, ind",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (5709.0) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.46790001215413213
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 74,
+      "original": "ithad",
+      "replacement": "it had",
+      "details": "Resolved merged token into: 'it' (PPS) + 'had' (HVD) [Split Score: -11.31 > Single: -25.00]",
+      "latency_ms": 0.05870003951713443
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 74,
+      "original": "ind",
+      "replacement": "and",
+      "details": "Real-word contextual error detected: 'ind' -> 'and'. Contextual likelihood ratio: 377.0x higher (P_cand=2.33e-07 vs P_orig=6.17e-10)",
+      "latency_ms": 0.18880004063248634
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 79,
+      "original": "be effected, and that it had to take",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (9887.2) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.24700001813471317
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 80,
+      "original": "timethe",
+      "replacement": "time the",
+      "details": "Resolved merged token into: 'time' (NN) + 'the' (AT) [Split Score: -10.39 > Single: -25.00]",
+      "latency_ms": 0.09730004239827394
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 84,
+      "original": "had to take place between the time the",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (9905.6) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.5366000114008784
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 89,
+      "original": "the time the fille finished the doctor's room",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (5486.8) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.42779999785125256
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 86,
+      "original": "andthe",
+      "replacement": "and the",
+      "details": "Resolved merged token into: 'and' (CC) + 'the' (AT) [Split Score: -7.47 > Single: -25.00]",
+      "latency_ms": 0.044199987314641476
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 87,
+      "original": "the",
+      "replacement": "hee",
+      "details": "Real-word contextual error detected: 'the' -> 'hee'. Contextual likelihood ratio: 35.8x higher (P_cand=6.17e-10 vs P_orig=1.73e-11)",
+      "latency_ms": 0.041700026486068964
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 94,
+      "original": "hee doctor's room and the time she began",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (32890.3) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.07660000119358301
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 91,
+      "original": "Theywaited",
+      "replacement": "they waited",
+      "details": "Resolved merged token into: 'they' (PPSS) + 'waited' (VBD) [Split Score: -16.54 > Single: -25.00]",
+      "latency_ms": 0.09089999366551638
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 99,
+      "original": "time she began Alex's. they waited three minutes",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (25476.0) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.2337999758310616
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 97,
+      "original": "outon",
+      "replacement": "out on",
+      "details": "Resolved merged token into: 'out' (RP) + 'on' (IN) [Split Score: -12.48 > Single: -25.00]",
+      "latency_ms": 0.03170000854879618
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 104,
+      "original": "waited three minutes and then crept out on",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (47156.4) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.3063000040128827
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 109,
+      "original": "halls",
+      "replacement": "hall",
+      "details": "Real-word contextual error detected: 'halls' -> 'hall'. Contextual likelihood ratio: 37.7x higher (P_cand=2.67e-08 vs P_orig=7.06e-10)",
+      "latency_ms": 0.17809995915740728
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 109,
+      "original": "crept out on tip-toe ; ; the hall",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (49925.6) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.21399999968707561
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 109,
+      "original": "hall",
+      "replacement": "wall",
+      "details": "Real-word contextual error detected: 'hall' -> 'wall'. Contextual likelihood ratio: 18.9x higher (P_cand=5.04e-07 vs P_orig=2.67e-08)",
+      "latency_ms": 0.09130005491897464
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 114,
+      "original": "; the wall were empty and they passed",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (29802.0) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.12640003114938736
+    },
+    {
+      "alert_type": "[SEGMENT-ALERT]",
+      "token_idx": 108,
+      "original": "downthe",
+      "replacement": "down the",
+      "details": "Resolved merged token into: 'down' (RP) + 'the' (AT) [Split Score: -10.98 > Single: -25.00]",
+      "latency_ms": 0.04899996565654874
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 119,
+      "original": "and they passed down the stairs to number",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (10197.0) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.2992000081576407
+    },
+    {
+      "alert_type": "[GRAMMAR-ALERT]",
+      "token_idx": 124,
+      "original": "stairs to number nine and listened at the",
+      "replacement": "[Review syntax/collocation]",
+      "details": "Local window perplexity (48802.1) exceeds anomaly threshold (850.0). Possible syntax or phrasing irregularity.",
+      "latency_ms": 0.32270001247525215
+    }
+  ],
+  "latency_stats": {
+    "avg_per_token_ms": 0.011987290621372097,
+    "max_per_token_ms": 0.3907000063918531,
+    "avg_per_trigger_ms": 0.31999599654227495,
+    "max_per_trigger_ms": 0.5392999737523496,
+    "total_tokens_processed": 126,
+    "total_alerts": 42
+  },
+  "sentence_records": [
+    {
+      "sentence_idx": 1,
+      "sentence_text": "The doctor sat down rather wearily, caressing the men and remarking that the city was not the place for a poultry-loving man, but no sooner was the remark out that a knock at this door obliged him to cover the men with his greatcoat once more.",
+      "pcfg_result": "unparseable",
+      "pcfg_log_prob": -Infinity,
+      "bigram_score": -519.8475908074137,
+      "bigram_ppl": 2135.8387828619343,
+      "trigram_score": -650.0681062833612,
+      "trigram_ppl": 14575.283289578114,
+      "chosen_method": "Bigram/Trigram LM",
+      "decision_reason": "PCFG unparseable and severe perplexity spikes in both Bigram (2135.8) and Trigram (14575.3) models.",
+      "final_verdict": "Ungrammatical",
+      "merges_resolved": 2,
+      "spelling_corrections": 0,
+      "tree_str": null
+    },
+    {
+      "sentence_idx": 2,
+      "sentence_text": "At the door Alex managed to persuade the increasingly astonishedfille de chambre to return in the minutes.",
+      "pcfg_result": "-221.98",
+      "pcfg_log_prob": -221.98100994938432,
+      "bigram_score": -205.89657533054393,
+      "bigram_ppl": 2775.8206280833024,
+      "trigram_score": -238.7805644288285,
+      "trigram_ppl": 9847.807957555124,
+      "chosen_method": "Bigram/Trigram LM",
+      "decision_reason": "PCFG unparseable and severe perplexity spikes in both Bigram (2775.8) and Trigram (9847.8) models.",
+      "final_verdict": "Ungrammatical",
+      "merges_resolved": 0,
+      "spelling_corrections": 0,
+      "tree_str": "(SBAR-ADV|<IN-S>\n  (IN At)\n  (S\n    (NP-SBJ\n      (NP (DT the) (NP|<NN-NNP> (NN door) (NNP Alex)))\n      (VP\n        (VBD managed)\n        (VP (TO to) (VP (VB persuade) (ADJP-PRD (JJ the))))))\n    (S|<ADVP-VP>\n      (ADVP\n        (RB increasingly)\n        (ADVP|<NN-IN-NN>\n          (NN astonishedfille)\n          (ADVP|<IN-NN> (IN de) (NN chambre))))\n      (VP\n        (TO to)\n        (VP\n          (VB return)\n          (VP|<PRT-NP> (PRT (RP in)) (NP (CD ten) (NNS minutes.))))))))"
+    },
+    {
+      "sentence_idx": 3,
+      "sentence_text": "It was evident that a second transfer had to be effected, and that it had to take place between the time the fille finished hee doctor's room and the time she began Alex's.",
+      "pcfg_result": "unparseable",
+      "pcfg_log_prob": -Infinity,
+      "bigram_score": -350.35000654942235,
+      "bigram_ppl": 1264.5531473508074,
+      "trigram_score": -451.1917065584503,
+      "trigram_ppl": 9880.335463018919,
+      "chosen_method": "Bigram/Trigram LM",
+      "decision_reason": "PCFG unparseable and severe perplexity spikes in both Bigram (1264.6) and Trigram (9880.3) models.",
+      "final_verdict": "Ungrammatical",
+      "merges_resolved": 4,
+      "spelling_corrections": 0,
+      "tree_str": null
+    },
+    {
+      "sentence_idx": 4,
+      "sentence_text": "they waited three minutes and then crept out on tip-toe ; ; the wall were empty and they passed down the stairs to number nine and listened at the door.",
+      "pcfg_result": "unparseable",
+      "pcfg_log_prob": -Infinity,
+      "bigram_score": -386.3666076082507,
+      "bigram_ppl": 5647.665606723578,
+      "trigram_score": -460.2044625928691,
+      "trigram_ppl": 29436.22904327199,
+      "chosen_method": "Bigram/Trigram LM",
+      "decision_reason": "PCFG unparseable and severe perplexity spikes in both Bigram (5647.7) and Trigram (29436.2) models.",
+      "final_verdict": "Ungrammatical",
+      "merges_resolved": 2,
+      "spelling_corrections": 0,
+      "tree_str": null
+    }
+  ],
+  "interactions": [
+    {
+      "sentence_idx": 1,
+      "raw_sentence": "The doctor sat down rather wearily, caressing the hen and remarking that the city was not the place for a poultry-loving man, but no sooner was the remark out than a knock at this door obliged him to cover the hen with his greatcoat once more.",
+      "corrected_sentence": "The doctor sat down rather wearily, caressing the men and remarking that the city was not the place for a poultry-loving man, but no sooner was the remark out that a knock at this door obliged him to cover the men with his greatcoat once more.",
+      "pcfg_before": "unparseable",
+      "pcfg_after": "unparseable",
+      "pcfg_flipped": false,
+      "decision_before": "Trigram LM",
+      "decision_after": "Bigram/Trigram LM",
+      "decision_changed": true,
+      "corrections_applied": [
+        "Merges resolved: 2",
+        "Spelling fixes: 0"
+      ]
+    },
+    {
+      "sentence_idx": 2,
+      "raw_sentence": "At the door Alex managed to persuade the increasingly astonished fille de chambre to return in ten minutes.",
+      "corrected_sentence": "At the door Alex managed to persuade the increasingly astonishedfille de chambre to return in the minutes.",
+      "pcfg_before": "-242.23",
+      "pcfg_after": "-221.98",
+      "pcfg_flipped": false,
+      "decision_before": "PCFG Parser",
+      "decision_after": "Bigram/Trigram LM",
+      "decision_changed": true,
+      "corrections_applied": [
+        "Merges resolved: 0",
+        "Spelling fixes: 0"
+      ]
+    },
+    {
+      "sentence_idx": 3,
+      "raw_sentence": "It was evident that a second transfer had to be effected, and that it had to take place between the time the fille finished the doctor's room and the time she began Alex's.",
+      "corrected_sentence": "It was evident that a second transfer had to be effected, and that it had to take place between the time the fille finished hee doctor's room and the time she began Alex's.",
+      "pcfg_before": "unparseable",
+      "pcfg_after": "unparseable",
+      "pcfg_flipped": false,
+      "decision_before": "Trigram LM",
+      "decision_after": "Bigram/Trigram LM",
+      "decision_changed": true,
+      "corrections_applied": [
+        "Merges resolved: 4",
+        "Spelling fixes: 0"
+      ]
+    },
+    {
+      "sentence_idx": 4,
+      "raw_sentence": "They waited three minutes and then crept out on tip-toe ; ;",
+      "corrected_sentence": "they waited three minutes and then crept out on tip-toe ; ; the wall were empty and they passed down the stairs to number nine and listened at the door.",
+      "pcfg_before": "-140.61",
+      "pcfg_after": "unparseable",
+      "pcfg_flipped": false,
+      "decision_before": "PCFG Parser",
+      "decision_after": "Bigram/Trigram LM",
+      "decision_changed": true,
+      "corrections_applied": [
+        "Merges resolved: 2",
+        "Spelling fixes: 0"
+      ]
+    }
+  ],
+  "agreement_matrix": {
+    "alerts_raised_and_verdict_ungrammatical_or_questionable": 3,
+    "alerts_raised_but_verdict_grammatical_post_correction": 0,
+    "no_alerts_and_verdict_grammatical": 0,
+    "no_alerts_but_verdict_ungrammatical_or_questionable": 1
+  }
+}
